@@ -1,4 +1,4 @@
-package com.example.fatima.electronicdoctor;
+package com.example.fatima.electronicdoctor.controller;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.example.fatima.electronicdoctor.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +33,14 @@ public class AnswersFeedFragment extends Fragment {
         list.add("four");
         list.add("five");
  String[] str=new String[5];
- str[0]="Ss";
+ str[0]="حةلحق لقةثخحطةل قلةثسكلةقكسطل لقسلةنكط لقمسطةمط نلاقس";
  str[1]="frf";
  str[2]="vfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
  str[3]="dxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
  str[4]="dxvfxnhnyn";
 
         String[] str2=new String[5];
-        str2[0]="22Ss";
+        str2[0]="حةلحق لقةثخحطةل قلةثسكلةقكسطل لقسلةنكط لقمسطةمط نلاقحةلحق لقةثخحطةل قلةثسكلةقكسطل لقسلةنكط لقمسطةمط نلاق";
         str2[1]="22frf";
         str2[2]="evevvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfxvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfxvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfxvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
         str2[3]="dxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
@@ -55,7 +57,7 @@ public class AnswersFeedFragment extends Fragment {
     }
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private FrameLayout mFrameLayout;
-        private TextView docName;
+        private TextView question,answer;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -63,6 +65,8 @@ public class AnswersFeedFragment extends Fragment {
         public RecyclerViewHolder(LayoutInflater inflater, ViewGroup container){
             super(inflater.inflate(R.layout.answered_questions,container,false));
             mFrameLayout =itemView.findViewById(R.id.answered_question_frame);
+            question =itemView.findViewById(R.id.questionTextView);
+            answer =itemView.findViewById(R.id.answerTextView);
 
         }
     }
@@ -89,8 +93,8 @@ public class AnswersFeedFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int i) {
 
-//            recyclerViewHolder.postTitle.setText(mList[i]);
-//            recyclerViewHolder.postDescription.setText(s[i]);
+            recyclerViewHolder.question.setText(mList[i]);
+            recyclerViewHolder.answer.setText(s[i]);
 
         }
 

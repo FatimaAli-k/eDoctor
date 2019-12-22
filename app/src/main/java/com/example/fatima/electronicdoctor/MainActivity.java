@@ -1,11 +1,16 @@
 package com.example.fatima.electronicdoctor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.example.fatima.electronicdoctor.controller.AnswersFeedFragment;
+import com.example.fatima.electronicdoctor.controller.AskQuestionFragment;
+import com.example.fatima.electronicdoctor.controller.PostsFeedFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    fragment = new RecyclerFragment();
+                    fragment = new PostsFeedFragment();
                     break;
 
                 case R.id.navigation_answered_questions:
@@ -31,25 +36,46 @@ public class MainActivity extends AppCompatActivity {
 //                    Intent myIntent = new Intent(MainActivity.this, MainActivity.class);
 //                    MainActivity.this.startActivity(myIntent);
                 case R.id.navigation_ask_question:
-                    fragment = new WritePostFragment();
+                    fragment = new AskQuestionFragment();
                     break;
 
-//                    return true;
+//                case R.id.navigation_post:
+////                    Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
+////                    MainActivity.this.startActivity(myIntent);
+//                    break;
+
             }
             return loadFragment(fragment);
         }
     };
 
+//    PostsFeedFragment mMyFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadFragment(new ProfileFragment());
+
+//        if (savedInstanceState != null) {
+//            //Restore the fragment's instance
+//            mMyFragment = (PostsFeedFragment) getSupportFragmentManager().getFragment(savedInstanceState, "PostsFeedFragment");
+//
+//        }
+//        else {
+            loadFragment(new PostsFeedFragment());
+//        }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
 
+
+    }
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        //Save the fragment's instance
+//        getSupportFragmentManager().putFragment(outState, "PostsFeedFragment", mMyFragment);
+//    }
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
@@ -59,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
             return true;
         }
+
         return false;
     }
 }

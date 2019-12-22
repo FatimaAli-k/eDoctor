@@ -10,60 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="303dp"
 
-        android:layout_margin="3dp">
+        android:layout_margin="7dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="3dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="9dp"
-                        android:layout_marginEnd="142dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="write question"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switch1"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <Switch
-                        android:id="@+id/switch1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:text="private"
-                        android:textAlignment="center"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.39" />
-                </android.support.constraint.ConstraintLayout>
-
-            </FrameLayout>
 
             <View
                 android:id="@+id/divider5"
@@ -84,24 +37,17 @@
             <EditText
                 android:id="@+id/editText3"
                 android:layout_width="match_parent"
-                android:layout_height="104dp"
+                android:layout_height="164dp"
                 android:ems="10"
                 android:hint="Description"
                 android:inputType="textMultiLine"
                 android:textAlignment="viewStart" />
 
-            <FrameLayout
+            <Spinner
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="47dp">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCompleteTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="#categories"
-                    android:textAllCaps="false"
-                    android:textStyle="italic" />
-            </FrameLayout>
+                android:layout_height="37dp"
+                android:entries="@drawable/pic" />
 
             <Button
                 android:id="@+id/button6"

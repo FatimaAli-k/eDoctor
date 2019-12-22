@@ -11,11 +11,15 @@
         android:id="@+id/navigation_answered_questions"
 
         android:icon="@drawable/ic_help_black_24dp"
-        android:title="browse questions" />
+        android:title="questions" />
 
     <item
         android:id="@+id/navigation_ask_question"
         android:icon="@drawable/ic_edit_black_24dp"
         android:title="@string/title_ask_question" />
+    <!--<item-->
+        <!--android:id="@+id/navigation_post"-->
+        <!--android:icon="@drawable/ic_edit_black_24dp"-->
+        <!--android:title="post" />-->
 
 </menu>

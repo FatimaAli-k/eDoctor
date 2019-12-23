@@ -4,12 +4,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,6 +29,8 @@ public class PostsFeedFragment extends Fragment {
         return new PostsFeedFragment();
     }
     private ListAdapter mListadapter;
+    int pos=-1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class PostsFeedFragment extends Fragment {
 
 
         //test values
+
         List<String> list=new ArrayList<>();
         list.add("FINGERS AND HOW THEY COULD KILL YOU AND EVERYONE YOU KNOW ");
         list.add("two");
@@ -44,18 +49,19 @@ public class PostsFeedFragment extends Fragment {
         list.add("four");
         list.add("five");
  String[] str=new String[5];
- str[0]="Ss";
+ str[0]="FINGERS AND HOW THEY COULD KILL YOU AND EVERYONE YOU KNOW ";
  str[1]="frf";
  str[2]="vfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
  str[3]="dxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
  str[4]="dxvfxnhnyn";
 
         String[] str2=new String[5];
-        str2[0]="22Ss";
+        str2[0]="yo sick people boy do i have some tips for you. FINGERTIPS to be exact hahahahahahah yip. as we all know nails are an important part in the health of out fingertips But im here to show the dangers of nails. for one what if you accidentally pinch someone with it and they sue you hmmm? never thought of that i see well if you wanna know how to avoid this horrible terrible fate buy my book. TIPS ABOUT THE FINGERTIPS AT YOUR TIPS.";
         str2[1]="22frf";
         str2[2]="evevvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfxvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfxvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfxvfvdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
         str2[3]="dxvfx vfdxvfdxvxdxvfx vfdxvfdxvx";
         str2[4]="dxvfxnhnyn";
+
         //
 
 //        List<List<String>> listOfLists = new ArrayList<List<String>>();
@@ -69,6 +75,7 @@ public class PostsFeedFragment extends Fragment {
         return view;
 
     }
+
 //    @Override
 //    public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
@@ -79,8 +86,9 @@ public class PostsFeedFragment extends Fragment {
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private CardView mCardView;
-        private TextView docName,speciality,postTitle,postDescription;
+        private TextView docName,speciality,postTitle,postDescription,rateUpCount,rateDownCount;
         private Button usefulBan,unclearBtn;
+        BottomNavigationView rateMenu;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -93,9 +101,17 @@ public class PostsFeedFragment extends Fragment {
             speciality=itemView.findViewById(R.id.specialityTextView);
             postTitle=itemView.findViewById(R.id.postTitleTextView);
             postDescription=itemView.findViewById(R.id.postDescriptionTextView);
-
+//xml code int main_activity, visibility set to gone replaced by rate_button
             usefulBan =itemView.findViewById(R.id.usefulBtn);
             unclearBtn=itemView.findViewById(R.id.unclearBtn);
+//
+
+            rateMenu = itemView.findViewById(R.id.rate);
+            rateUpCount = itemView.findViewById(R.id.up_count);
+            rateDownCount=itemView.findViewById(R.id.down_count);
+
+
+
         }
 
 
@@ -118,6 +134,7 @@ public class PostsFeedFragment extends Fragment {
         public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             return new RecyclerViewHolder(inflater, viewGroup);
+
         }
 
         @Override
@@ -125,6 +142,35 @@ public class PostsFeedFragment extends Fragment {
 
             recyclerViewHolder.postTitle.setText(mList[i]);
             recyclerViewHolder.postDescription.setText(s[i]);
+
+
+
+            recyclerViewHolder.rateMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                    switch (menuItem.getItemId()) {
+                case R.id.rate_up:
+
+                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+                    recyclerViewHolder.rateUpCount.setText("999M");
+                    return true;
+
+                case R.id.rate_down:
+                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+                    recyclerViewHolder.rateDownCount.setText("1");
+                    return true;
+//
+//
+//
+            }
+                    return false;
+                }
+            });
+
+
+
+
 
             //rate buttons action
             recyclerViewHolder.usefulBan.setOnClickListener(new View.OnClickListener()
@@ -149,13 +195,47 @@ public class PostsFeedFragment extends Fragment {
             });
             //
 
+
+
+
         }
+
 
         @Override
         public int getItemCount() {
             return s.length;
         }
+
+
     }
+//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+//            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+//
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//
+//            switch (item.getItemId()) {
+//                case R.id.rate_up:
+//                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+//                    return true;
+//
+//                case R.id.rate_down:
+//                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+//                    return true;
+////
+//
+//
+//            }
+//            return false;
+//        }
+//
+////                    BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+////                    navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+//
+//    };
+
+
 
 
 }

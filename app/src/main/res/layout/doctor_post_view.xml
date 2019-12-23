@@ -113,6 +113,12 @@
                     android:text="yo sick people boy do i have some tips for you. FINGERTIPS to be exact hahahahahahah yip. as we all know nails are an important part in the health of out fingertips But im here to show the dangers of nail. for one what if you accidentally pinch someone with it and they sue you hmmm? never thought of that i see well if you wanna know how to avoid this horrible terrible fate but my book. TIPS ABOUT THE FINGERTIPS AT YOU TIPS."
                     android:textAppearance="@android:style/TextAppearance.Widget.TextView" />
 
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
             </LinearLayout>
 
         </FrameLayout>
@@ -120,7 +126,8 @@
         <FrameLayout
             android:id="@+id/rate_frame"
             android:layout_width="match_parent"
-            android:layout_height="35dp">
+            android:layout_height="35dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -182,6 +189,11 @@
                 android:background="?android:attr/listDivider"
                 android:visibility="visible" />
         </FrameLayout>
+
+        <include
+            layout="@layout/rate_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

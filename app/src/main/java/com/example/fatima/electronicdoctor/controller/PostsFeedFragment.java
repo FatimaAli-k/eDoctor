@@ -1,11 +1,16 @@
 package com.example.fatima.electronicdoctor.controller;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.CardView;
@@ -15,10 +20,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fatima.electronicdoctor.MainActivity;
+import com.example.fatima.electronicdoctor.PopUpClass;
 import com.example.fatima.electronicdoctor.R;
 import com.example.fatima.electronicdoctor.model.Post;
 
@@ -30,7 +39,7 @@ public class PostsFeedFragment extends Fragment {
         return new PostsFeedFragment();
     }
     private ListAdapter mListadapter;
-    int pos=-1;
+
 
     @Nullable
     @Override
@@ -89,7 +98,8 @@ public class PostsFeedFragment extends Fragment {
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private CardView mCardView;
         private TextView docName,speciality,postTitle,postDescription,rateUpCount,rateDownCount,expand;
-        private Button usefulBan,unclearBtn;
+        //private Button usefulBan,unclearBtn;
+        private ImageView imageView;
         BottomNavigationView rateMenu;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,15 +116,17 @@ public class PostsFeedFragment extends Fragment {
 
             postDescription.setVisibility(View.GONE);
             expand=itemView.findViewById(R.id.expand);
-//xml code int main_activity, visibility set to gone replaced by rate_button
-            usefulBan =itemView.findViewById(R.id.usefulBtn);
-            unclearBtn=itemView.findViewById(R.id.unclearBtn);
+//xml code int main_activity,  replaced by rate_button
+//            usefulBan =itemView.findViewById(R.id.usefulBtn);
+//            unclearBtn=itemView.findViewById(R.id.unclearBtn);
 //
 
             rateMenu = itemView.findViewById(R.id.rate);
             rateUpCount = itemView.findViewById(R.id.up_count);
             rateDownCount=itemView.findViewById(R.id.down_count);
 
+
+            imageView=itemView.findViewById(R.id.postImageView);
 
 
         }
@@ -162,15 +174,9 @@ public class PostsFeedFragment extends Fragment {
                         else
                             recyclerViewHolder.expand.setText("\nclick to expand");
 
-
-
-
-
-
                 }
             });
-
-
+            //rate buttons click
             recyclerViewHolder.rateMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -194,31 +200,46 @@ public class PostsFeedFragment extends Fragment {
                 }
             });
 
+            //test
+            //image set on 1st item
+            if(i==0)
+            recyclerViewHolder.imageView.setImageResource(R.drawable.pic2);
 
-
-
-
-            //rate buttons action
-            recyclerViewHolder.usefulBan.setOnClickListener(new View.OnClickListener()
-            {
+            //image expand
+            recyclerViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    recyclerViewHolder.usefulBan.setBackgroundColor(Color.RED);
-                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+                public void onClick(View view) {
+                    PopUpClass popUpClass = new PopUpClass();
+                    popUpClass.showPopupWindow(view,recyclerViewHolder.imageView.getDrawable());
+
+
                 }
             });
 
 
-            recyclerViewHolder.unclearBtn.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    recyclerViewHolder.unclearBtn.setBackgroundColor(Color.RED);
-                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
-                }
-            });
+
+
+//            //rate buttons action OLD BUTTONS
+//            recyclerViewHolder.usefulBan.setOnClickListener(new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    recyclerViewHolder.usefulBan.setBackgroundColor(Color.RED);
+//                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//
+//            recyclerViewHolder.unclearBtn.setOnClickListener(new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    recyclerViewHolder.unclearBtn.setBackgroundColor(Color.RED);
+//                    Toast.makeText(getActivity(), "Item " + i + " is clicked.", Toast.LENGTH_SHORT).show();
+//                }
+//            });
             //
 
 

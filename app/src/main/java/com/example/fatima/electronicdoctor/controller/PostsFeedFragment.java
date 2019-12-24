@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,6 +73,7 @@ public class PostsFeedFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RecyclerViewAdapter(str,str2));
 
+
         return view;
 
     }
@@ -86,7 +88,7 @@ public class PostsFeedFragment extends Fragment {
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private CardView mCardView;
-        private TextView docName,speciality,postTitle,postDescription,rateUpCount,rateDownCount;
+        private TextView docName,speciality,postTitle,postDescription,rateUpCount,rateDownCount,expand;
         private Button usefulBan,unclearBtn;
         BottomNavigationView rateMenu;
         public RecyclerViewHolder(@NonNull View itemView) {
@@ -101,6 +103,9 @@ public class PostsFeedFragment extends Fragment {
             speciality=itemView.findViewById(R.id.specialityTextView);
             postTitle=itemView.findViewById(R.id.postTitleTextView);
             postDescription=itemView.findViewById(R.id.postDescriptionTextView);
+
+            postDescription.setVisibility(View.GONE);
+            expand=itemView.findViewById(R.id.expand);
 //xml code int main_activity, visibility set to gone replaced by rate_button
             usefulBan =itemView.findViewById(R.id.usefulBtn);
             unclearBtn=itemView.findViewById(R.id.unclearBtn);
@@ -142,7 +147,28 @@ public class PostsFeedFragment extends Fragment {
 
             recyclerViewHolder.postTitle.setText(mList[i]);
             recyclerViewHolder.postDescription.setText(s[i]);
+            //expand on click
+            recyclerViewHolder.expand.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                        recyclerViewHolder.postDescription.setVisibility( recyclerViewHolder.postDescription.isShown()
+                                ? View.GONE
+                                : View.VISIBLE );
+
+                        if(recyclerViewHolder.postDescription.isShown())
+                            recyclerViewHolder.expand.setText("\nclick to hide");
+
+                        else
+                            recyclerViewHolder.expand.setText("\nclick to expand");
+
+
+
+
+
+
+                }
+            });
 
 
             recyclerViewHolder.rateMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

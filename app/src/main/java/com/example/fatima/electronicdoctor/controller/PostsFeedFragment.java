@@ -30,6 +30,7 @@ import com.example.fatima.electronicdoctor.MainActivity;
 import com.example.fatima.electronicdoctor.PopUpClass;
 import com.example.fatima.electronicdoctor.R;
 import com.example.fatima.electronicdoctor.model.Post;
+import com.example.fatima.electronicdoctor.model.Utill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +98,7 @@ public class PostsFeedFragment extends Fragment {
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private CardView mCardView;
-        private TextView docName,speciality,postTitle,postDescription,rateUpCount,rateDownCount,expand;
+        private TextView docName,speciality,postTitle,postDescription,rateUpCount,rateDownCount,expand,timeStamp;
         //private Button usefulBan,unclearBtn;
         private ImageView imageView;
         BottomNavigationView rateMenu;
@@ -125,9 +126,10 @@ public class PostsFeedFragment extends Fragment {
             rateUpCount = itemView.findViewById(R.id.up_count);
             rateDownCount=itemView.findViewById(R.id.down_count);
 
-
             imageView=itemView.findViewById(R.id.postImageView);
+            imageView.setVisibility(View.GONE);
 
+            timeStamp=itemView.findViewById(R.id.timeStamp);
 
         }
 
@@ -159,6 +161,9 @@ public class PostsFeedFragment extends Fragment {
 
             recyclerViewHolder.postTitle.setText(mList[i]);
             recyclerViewHolder.postDescription.setText(s[i]);
+            Utill mUtill=new Utill();
+            recyclerViewHolder.timeStamp.setText(mUtill.calculateDateTime("yyyy/MM/dd"));
+
             //expand on click
             recyclerViewHolder.expand.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -202,9 +207,17 @@ public class PostsFeedFragment extends Fragment {
 
             //test
             //image set on 1st item
-            if(i==0)
-            recyclerViewHolder.imageView.setImageResource(R.drawable.pic2);
+            if(i==0) {
+                recyclerViewHolder.imageView.setVisibility(View.VISIBLE);
+                recyclerViewHolder.imageView.setImageResource(R.drawable.pic2);
 
+            }
+            if(i==2) {
+                recyclerViewHolder.imageView.setVisibility(View.VISIBLE);
+                recyclerViewHolder.imageView.setImageResource(R.drawable.pic);
+
+
+            }
             //image expand
             recyclerViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/rate_up"
+        android:icon="@drawable/ic_expand_less_black_24dp"
+        android:title="@android:string/ok" />
+    <item
+        android:id="@+id/rate_down"
+        android:icon="@drawable/ic_expand_more_black_24dp"
+        android:title="what??!" />
+</menu>

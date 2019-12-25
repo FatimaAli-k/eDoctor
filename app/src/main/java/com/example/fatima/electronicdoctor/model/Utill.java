@@ -4,10 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class utill {
+public class Utill {
 
+    public String calculateDateTime(String pattern){
+        SimpleDateFormat s = new SimpleDateFormat(pattern);
+        return s.format(new Date());
+    }
     public String calculateDateTime(){
-        SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss");
+        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         return s.format(new Date());
     }
 

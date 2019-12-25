@@ -4,7 +4,7 @@ public class Patient {
     private String id;
     private String userName;
     private String fullName;
-    private Integer dateOfBirth; //yyyymmdd use getAge from utill class to get age
+    private Integer dateOfBirth; //yyyymmdd use getAge from Utill class to get age
     private boolean gender; // T male, F female
 
     public Patient(String userName, String fullName, Integer dateOfBirth, boolean gender){

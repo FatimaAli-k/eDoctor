@@ -30,7 +30,7 @@ public class Post {
         this.link=link;
         this.category_id=category_id;
         this.user_id=user_id;
-        this.dateTime=dateTime; //use calculateDateTime from utill class to get the date
+        this.dateTime=dateTime; //use calculateDateTime from Utill class to get the date
     }
 
     //constructor without link or image incase they're not available
@@ -40,7 +40,7 @@ public class Post {
         this.description=description;
         this.category_id=category_id;
         this.user_id=user_id;
-        this.dateTime=dateTime; //use calculateDateTime from utill class to get the date
+        this.dateTime=dateTime; //use calculateDateTime from Utill class to get the date
     }
 
 
